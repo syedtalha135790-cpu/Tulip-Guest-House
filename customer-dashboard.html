@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard - Tulip Guest House</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-warm">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-murree sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand brand-logo-container" href="index.html">
+        <div class="brand-logo-box">
+          <i class="bi bi-flower1"></i>
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title-main">Tulip Guest House</span>
+          <span class="brand-tagline-sub">Murree, Pakistan</span>
+        </div>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="rooms.html">Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex align-items-center" id="navbarAuthButtons"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Customer Dashboard Layout -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Sidebar Navigation -->
+        <div class="col-lg-3">
+          <div class="card card-murree p-3 shadow-sm">
+            <div class="d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
+              <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold fs-4" style="width: 50px; height: 50px;" id="userAvatar">
+                U
+              </div>
+              <div>
+                <h6 class="fw-bold m-0" id="userNameLabel">Guest User</h6>
+                <small class="text-muted" id="userEmailLabel">guest@example.com</small>
+              </div>
+            </div>
+
+            <div class="nav flex-column nav-pills">
+              <a class="nav-link active mb-1" href="customer-dashboard.html"><i class="bi bi-speedometer2 me-2"></i> Dashboard Overview</a>
+              <a class="nav-link mb-1 text-dark" href="my-bookings.html"><i class="bi bi-journal-bookmark me-2"></i> My Bookings</a>
+              <a class="nav-link mb-1 text-dark" href="rooms.html"><i class="bi bi-plus-circle me-2"></i> Book New Room</a>
+              <hr class="my-2">
+              <button class="nav-link text-danger text-start w-100" onclick="logoutCustomer()"><i class="bi bi-box-arrow-right me-2"></i> Logout</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Dashboard Content -->
+        <div class="col-lg-9">
+          <!-- Metric Cards -->
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-murree p-3 border-0 shadow-sm text-center">
+                <i class="bi bi-calendar-check text-success fs-1 mb-2"></i>
+                <small class="text-muted d-block">Upcoming Stay</small>
+                <strong class="fs-3 font-heading" id="dashCountUpcoming">1</strong>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-murree p-3 border-0 shadow-sm text-center">
+                <i class="bi bi-journal-text text-primary fs-1 mb-2"></i>
+                <small class="text-muted d-block">Total Bookings</small>
+                <strong class="fs-3 font-heading" id="dashCountTotal">3</strong>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-murree p-3 border-0 shadow-sm text-center">
+                <i class="bi bi-check-circle text-success fs-1 mb-2"></i>
+                <small class="text-muted d-block">Completed Stays</small>
+                <strong class="fs-3 font-heading" id="dashCountCompleted">1</strong>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-murree p-3 border-0 shadow-sm text-center">
+                <i class="bi bi-x-circle text-danger fs-1 mb-2"></i>
+                <small class="text-muted d-block">Cancelled</small>
+                <strong class="fs-3 font-heading" id="dashCountCancelled">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Stay Card -->
+          <div class="card card-murree p-4 mb-4 shadow-sm">
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+              <h5 class="fw-bold font-heading m-0"><i class="bi bi-house-heart text-success me-2"></i>Your Next Upcoming Stay</h5>
+              <span class="badge badge-status badge-available">CONFIRMED</span>
+            </div>
+
+            <div class="row align-items-center g-4" id="upcomingStayCardBody">
+              <div class="col-md-4">
+                <img src="assets/images/hotel-5.jpg" class="img-fluid rounded-3 shadow-sm w-100" style="height: 160px; object-fit: cover;" alt="Deluxe Room">
+              </div>
+              <div class="col-md-8">
+                <div class="d-flex justify-content-between">
+                  <h4 class="fw-bold font-heading mb-1">Deluxe Mountain View Room</h4>
+                  <span class="text-success fw-bold font-monospace">TGH-2026-000123</span>
+                </div>
+                <p class="text-muted small mb-3"><i class="bi bi-geo-alt text-success me-1"></i> Tulip Guest House, Upper Mountain Deck</p>
+
+                <div class="row g-2 mb-3 bg-light p-3 rounded-3 small">
+                  <div class="col-sm-6">
+                    <span class="text-muted d-block">Check-in Date</span>
+                    <strong class="text-dark">15 September 2026</strong>
+                  </div>
+                  <div class="col-sm-6">
+                    <span class="text-muted d-block">Check-out Date</span>
+                    <strong class="text-dark">18 September 2026</strong>
+                  </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <a href="booking-confirmation.html?id=TGH-2026-000123" class="btn btn-outline-sage btn-sm">View Details</a>
+                  <button class="btn btn-outline-danger btn-sm" onclick="cancelUpcomingBooking('TGH-2026-000123')">Cancel Reservation</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Book CTA -->
+          <div class="card bg-white p-4 rounded-4 border-0 shadow-sm d-flex flex-row align-items-center justify-content-between flex-wrap gap-3">
+            <div>
+              <h5 class="fw-bold font-heading m-0">Planning Another Murree Trip?</h5>
+              <p class="text-muted m-0 small">Explore our newly added executive pine suites for weekend family getaways.</p>
+            </div>
+            <a href="rooms.html" class="btn btn-sage"><i class="bi bi-calendar-plus me-1"></i> Book New Room</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center text-muted fs-6">
+      <p class="m-0">&copy; 2026 Tulip Guest House. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/booking.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const customer = getCurrentCustomer() || { name: "Guest User", email: "guest@example.com" };
+      document.getElementById('userNameLabel').textContent = customer.name;
+      document.getElementById('userEmailLabel').textContent = customer.email;
+      document.getElementById('userAvatar').textContent = customer.name.charAt(0).toUpperCase();
+
+      const bookings = getStoredBookings();
+      document.getElementById('dashCountTotal').textContent = bookings.length;
+      document.getElementById('dashCountUpcoming').textContent = bookings.filter(b => b.status === 'Confirmed' || b.status === 'Pending').length;
+      document.getElementById('dashCountCompleted').textContent = bookings.filter(b => b.status === 'Completed').length;
+      document.getElementById('dashCountCancelled').textContent = bookings.filter(b => b.status === 'Cancelled').length;
+    });
+
+    function cancelUpcomingBooking(id) {
+      if (confirm("Are you sure you want to cancel this reservation?")) {
+        const bookings = getStoredBookings();
+        const b = bookings.find(item => item.id === id);
+        if (b) {
+          b.status = "Cancelled";
+          saveStoredBookings(bookings);
+          showToast("Reservation cancelled successfully.", "danger");
+          setTimeout(() => location.reload(), 1000);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

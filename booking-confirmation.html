@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed - Tulip Guest House</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-warm">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-murree sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand brand-logo-container" href="index.html">
+        <div class="brand-logo-box">
+          <i class="bi bi-flower1"></i>
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title-main">Tulip Guest House</span>
+          <span class="brand-tagline-sub">Murree, Pakistan</span>
+        </div>
+      </a>
+      <div class="d-flex align-items-center ms-auto" id="navbarAuthButtons"></div>
+    </div>
+  </nav>
+
+  <!-- Confirmation Card -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card card-murree text-center p-5 shadow-sm border-0">
+            <div class="mb-4">
+              <div class="d-inline-flex align-items-center justify-content-center bg-success text-white rounded-circle" style="width: 80px; height: 80px;">
+                <i class="bi bi-check-lg display-4"></i>
+              </div>
+            </div>
+
+            <h1 class="display-6 font-heading fw-bold text-success mb-2">Booking Confirmed!</h1>
+            <p class="lead text-muted mb-4">Your reservation has been successfully submitted to Tulip Guest House.</p>
+
+            <div class="bg-light p-4 rounded-4 mb-4 text-start">
+              <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                <span class="text-muted">Booking Reference ID</span>
+                <strong class="fs-4 text-success font-monospace" id="confBookingId">TGH-2026-000123</strong>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <span class="text-muted d-block small">Guest Name</span>
+                  <strong class="text-dark fs-6" id="confGuestName">Hamza Malik</strong>
+                </div>
+                <div class="col-sm-6">
+                  <span class="text-muted d-block small">Reserved Room</span>
+                  <strong class="text-dark fs-6" id="confRoomName">Deluxe Mountain View Room</strong>
+                </div>
+                <div class="col-sm-6">
+                  <span class="text-muted d-block small">Check-in Date</span>
+                  <strong class="text-dark fs-6" id="confCheckIn">10 Sep 2026</strong>
+                </div>
+                <div class="col-sm-6">
+                  <span class="text-muted d-block small">Check-out Date</span>
+                  <strong class="text-dark fs-6" id="confCheckOut">14 Sep 2026</strong>
+                </div>
+                <div class="col-sm-6">
+                  <span class="text-muted d-block small">Guests</span>
+                  <strong class="text-dark fs-6" id="confGuests">2 Guests</strong>
+                </div>
+                <div class="col-sm-6">
+                  <span class="text-muted d-block small">Reservation Status</span>
+                  <span class="badge badge-status badge-available">CONFIRMED</span>
+                </div>
+                <div class="col-12 border-top pt-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="text-muted">Total Payable at Guest House</span>
+                    <strong class="fs-4 text-success" id="confTotal">PKR 39,900</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-success d-flex align-items-center gap-3 p-3 text-start mb-4 rounded-3">
+              <i class="bi bi-info-circle-fill fs-3 text-success"></i>
+              <div>
+                <strong>Keep Your Booking ID:</strong>
+                <p class="m-0 small text-muted">We have received your booking request. Please save your booking ID for check-in verification at Tulip Guest House reception.</p>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+              <a href="my-bookings.html" class="btn btn-sage px-4 py-2">
+                <i class="bi bi-journal-bookmark me-1"></i> View My Bookings
+              </a>
+              <a href="index.html" class="btn btn-outline-sage px-4 py-2">
+                <i class="bi bi-house me-1"></i> Back to Home
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center text-muted fs-6">
+      <p class="m-0">&copy; 2026 Tulip Guest House. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/booking.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const bookingId = params.get('id') || "TGH-2026-000123";
+      
+      const bookings = getStoredBookings();
+      const booking = bookings.find(b => b.id === bookingId) || bookings[0];
+
+      document.getElementById('confBookingId').textContent = booking.id;
+      document.getElementById('confGuestName').textContent = booking.customerName;
+      document.getElementById('confRoomName').textContent = booking.roomName;
+      document.getElementById('confCheckIn').textContent = formatDateString(booking.checkIn);
+      document.getElementById('confCheckOut').textContent = formatDateString(booking.checkOut);
+      document.getElementById('confGuests').textContent = `${booking.guests} Guests`;
+      document.getElementById('confTotal').textContent = `PKR ${booking.amount.toLocaleString()}`;
+    });
+  </script>
+</body>
+</html>

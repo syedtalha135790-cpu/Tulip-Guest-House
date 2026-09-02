@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Bookings Management - Tulip Guest House</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar shadow" id="adminSidebar">
+      <div class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom border-secondary">
+        <i class="bi bi-flower1 fs-3 text-success"></i>
+        <div>
+          <h5 class="fw-bold font-heading m-0 text-white">Tulip Guest House</h5>
+          <small class="text-success fw-semibold">ADMIN CONTROL</small>
+        </div>
+      </div>
+
+      <ul class="nav flex-column mb-auto">
+        <li class="nav-item">
+          <a href="admin-dashboard.html" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-rooms.html" class="nav-link"><i class="bi bi-door-open"></i> Rooms Management</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-bookings.html" class="nav-link active"><i class="bi bi-journal-bookmark"></i> Bookings Management</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-availability.html" class="nav-link"><i class="bi bi-calendar-range"></i> Availability Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-settings.html" class="nav-link"><i class="bi bi-gear"></i> Hotel Settings</a>
+        </li>
+        <li class="nav-item">
+          <a href="index.html" target="_blank" class="nav-link"><i class="bi bi-globe"></i> View Public Site</a>
+        </li>
+      </ul>
+
+      <div class="pt-3 border-top border-secondary">
+        <button class="btn btn-outline-danger btn-sm w-100 d-flex align-items-center justify-content-center gap-2" onclick="logoutAdmin()">
+          <i class="bi bi-box-arrow-right"></i> Admin Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="font-heading fw-bold m-0">Bookings Management</h2>
+          <p class="text-muted m-0">View all customer reservations, update booking status, and check-in guests.</p>
+        </div>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="card card-murree p-3 mb-4 border-0 shadow-sm">
+        <div class="row g-3 align-items-center">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control border-start-0" id="searchBookingInput" placeholder="Search customer, ID or room..." onkeyup="filterBookingsTable()">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" id="filterBookingStatus" onchange="filterBookingsTable()">
+              <option value="all">All Booking Statuses</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Completed">Completed</option>
+              <option value="Pending">Pending</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bookings Table -->
+      <div class="card card-murree p-4 border-0 shadow-sm">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Booking ID</th>
+                <th>Guest Details</th>
+                <th>Room Info</th>
+                <th>Check-in / Out</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Manage Status</th>
+              </tr>
+            </thead>
+            <tbody id="allAdminBookingsTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Booking Details Modal -->
+  <div class="modal fade" id="bookingDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title font-heading fw-bold">Reservation Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4" id="modalBookingBody">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAllAdminBookings();
+    });
+
+    function renderAllAdminBookings() {
+      const tableBody = document.getElementById('allAdminBookingsTableBody');
+      const bookings = getStoredBookings();
+
+      tableBody.innerHTML = bookings.map(b => `
+        <tr>
+          <td class="fw-bold font-monospace text-success">${b.id}</td>
+          <td>
+            <div class="fw-bold">${b.customerName}</div>
+            <small class="text-muted">${b.phone}</small>
+          </td>
+          <td>
+            <div>Room #${b.roomNumber}</div>
+            <small class="text-muted">${b.roomName}</small>
+          </td>
+          <td>
+            <small class="d-block">In: <strong>${b.checkIn}</strong></small>
+            <small class="d-block text-muted">Out: ${b.checkOut}</small>
+          </td>
+          <td class="fw-bold">PKR ${b.amount.toLocaleString()}</td>
+          <td>
+            <span class="badge ${b.status === 'Confirmed' ? 'badge-available' : b.status === 'Completed' ? 'bg-secondary text-white' : b.status === 'Pending' ? 'badge-maintenance' : 'badge-booked'}">${b.status}</span>
+          </td>
+          <td>
+            <select class="form-select form-select-sm" onchange="updateBookingStatus('${b.id}', this.value)">
+              <option value="Confirmed" ${b.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+              <option value="Completed" ${b.status === 'Completed' ? 'selected' : ''}>Completed</option>
+              <option value="Pending" ${b.status === 'Pending' ? 'selected' : ''}>Pending</option>
+              <option value="Cancelled" ${b.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+            </select>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updateBookingStatus(id, newStatus) {
+      const bookings = getStoredBookings();
+      const b = bookings.find(item => item.id === id);
+      if (b) {
+        b.status = newStatus;
+        saveStoredBookings(bookings);
+        showToast(`Booking ${id} status updated to ${newStatus}`);
+      }
+    }
+
+    function filterBookingsTable() {
+      const query = document.getElementById('searchBookingInput').value.toLowerCase();
+      const statusFilter = document.getElementById('filterBookingStatus').value;
+      const bookings = getStoredBookings();
+
+      const filtered = bookings.filter(b => {
+        const matchesQuery = b.id.toLowerCase().includes(query) || b.customerName.toLowerCase().includes(query) || b.roomName.toLowerCase().includes(query);
+        const matchesStatus = statusFilter === 'all' || b.status === statusFilter;
+        return matchesQuery && matchesStatus;
+      });
+
+      const tableBody = document.getElementById('allAdminBookingsTableBody');
+      tableBody.innerHTML = filtered.map(b => `
+        <tr>
+          <td class="fw-bold font-monospace text-success">${b.id}</td>
+          <td>
+            <div class="fw-bold">${b.customerName}</div>
+            <small class="text-muted">${b.phone}</small>
+          </td>
+          <td>
+            <div>Room #${b.roomNumber}</div>
+            <small class="text-muted">${b.roomName}</small>
+          </td>
+          <td>
+            <small class="d-block">In: <strong>${b.checkIn}</strong></small>
+            <small class="d-block text-muted">Out: ${b.checkOut}</small>
+          </td>
+          <td class="fw-bold">PKR ${b.amount.toLocaleString()}</td>
+          <td>
+            <span class="badge ${b.status === 'Confirmed' ? 'badge-available' : b.status === 'Completed' ? 'bg-secondary text-white' : b.status === 'Pending' ? 'badge-maintenance' : 'badge-booked'}">${b.status}</span>
+          </td>
+          <td>
+            <select class="form-select form-select-sm" onchange="updateBookingStatus('${b.id}', this.value)">
+              <option value="Confirmed" ${b.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+              <option value="Completed" ${b.status === 'Completed' ? 'selected' : ''}>Completed</option>
+              <option value="Pending" ${b.status === 'Pending' ? 'selected' : ''}>Pending</option>
+              <option value="Cancelled" ${b.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+            </select>
+          </td>
+        </tr>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

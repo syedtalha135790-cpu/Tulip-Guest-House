@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Availability Matrix - Tulip Guest House</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar shadow" id="adminSidebar">
+      <div class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom border-secondary">
+        <i class="bi bi-flower1 fs-3 text-success"></i>
+        <div>
+          <h5 class="fw-bold font-heading m-0 text-white">Tulip Guest House</h5>
+          <small class="text-success fw-semibold">ADMIN CONTROL</small>
+        </div>
+      </div>
+
+      <ul class="nav flex-column mb-auto">
+        <li class="nav-item">
+          <a href="admin-dashboard.html" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-rooms.html" class="nav-link"><i class="bi bi-door-open"></i> Rooms Management</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-bookings.html" class="nav-link"><i class="bi bi-journal-bookmark"></i> Bookings Management</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-availability.html" class="nav-link active"><i class="bi bi-calendar-range"></i> Availability Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-settings.html" class="nav-link"><i class="bi bi-gear"></i> Hotel Settings</a>
+        </li>
+        <li class="nav-item">
+          <a href="index.html" target="_blank" class="nav-link"><i class="bi bi-globe"></i> View Public Site</a>
+        </li>
+      </ul>
+
+      <div class="pt-3 border-top border-secondary">
+        <button class="btn btn-outline-danger btn-sm w-100 d-flex align-items-center justify-content-center gap-2" onclick="logoutAdmin()">
+          <i class="bi bi-box-arrow-right"></i> Admin Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="font-heading fw-bold m-0">Room Availability Matrix</h2>
+          <p class="text-muted m-0">Visual calendar view of room occupation and free dates for September 2026.</p>
+        </div>
+      </div>
+
+      <!-- Calendar Legend -->
+      <div class="card card-murree p-3 mb-4 border-0 shadow-sm">
+        <div class="d-flex align-items-center gap-4 flex-wrap">
+          <span class="fw-bold">Legend:</span>
+          <div class="d-flex align-items-center gap-2"><span class="badge cell-free px-3 py-2">FREE</span> <span>Available for Booking</span></div>
+          <div class="d-flex align-items-center gap-2"><span class="badge cell-booked px-3 py-2">BOOKED</span> <span>Reserved Guest Stay</span></div>
+          <div class="d-flex align-items-center gap-2"><span class="badge cell-maintenance px-3 py-2">MAINT</span> <span>Under Maintenance</span></div>
+        </div>
+      </div>
+
+      <!-- Matrix Calendar Table Card -->
+      <div class="card card-murree p-4 border-0 shadow-sm">
+        <div class="table-responsive">
+          <table class="table calendar-table align-middle mb-0" id="availabilityMatrixTable">
+            <!-- Rendered by admin.js -->
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

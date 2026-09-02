@@ -1,0 +1,10 @@
+# Git Ignore for Tulip Guest House
+
+/laravel-backend/vendor
+/laravel-backend/.env
+/laravel-backend/storage/*.key
+/laravel-backend/storage/logs/*
+/laravel-backend/bootstrap/cache/*
+.DS_Store
+Thumbs.db
+*.log

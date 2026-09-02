@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Hotel Settings - Tulip Guest House</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar shadow" id="adminSidebar">
+      <div class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom border-secondary">
+        <i class="bi bi-flower1 fs-3 text-success"></i>
+        <div>
+          <h5 class="fw-bold font-heading m-0 text-white">Tulip Guest House</h5>
+          <small class="text-success fw-semibold">ADMIN CONTROL</small>
+        </div>
+      </div>
+
+      <ul class="nav flex-column mb-auto">
+        <li class="nav-item">
+          <a href="admin-dashboard.html" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-rooms.html" class="nav-link"><i class="bi bi-door-open"></i> Rooms Management</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-bookings.html" class="nav-link"><i class="bi bi-journal-bookmark"></i> Bookings Management</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-availability.html" class="nav-link"><i class="bi bi-calendar-range"></i> Availability Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-settings.html" class="nav-link active"><i class="bi bi-gear"></i> Hotel Settings</a>
+        </li>
+        <li class="nav-item">
+          <a href="index.html" target="_blank" class="nav-link"><i class="bi bi-globe"></i> View Public Site</a>
+        </li>
+      </ul>
+
+      <div class="pt-3 border-top border-secondary">
+        <button class="btn btn-outline-danger btn-sm w-100 d-flex align-items-center justify-content-center gap-2" onclick="logoutAdmin()">
+          <i class="bi bi-box-arrow-right"></i> Admin Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-content">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="font-heading fw-bold m-0">Guest House Settings</h2>
+          <p class="text-muted m-0">Configure guest house profile name, contact details, tax rate, and booking preferences.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card card-murree p-4 border-0 shadow-sm">
+            <form id="adminSettingsForm" onsubmit="handleSaveSettings(event)">
+              <h4 class="font-heading fw-bold mb-4 border-bottom pb-3">Guest House Information</h4>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Property / Business Name *</label>
+                <input type="text" class="form-control" name="hotelName" value="Tulip Guest House" required>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Contact Phone Number *</label>
+                  <input type="text" class="form-control" name="phone" value="+92 300 1234567" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Official Email Address *</label>
+                  <input type="email" class="form-control" name="email" value="info@tulipguesthouse.com" required>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-semibold">Physical Address *</label>
+                <input type="text" class="form-control" name="address" value="Murree Expressway, Murree, Punjab, Pakistan" required>
+              </div>
+
+              <h4 class="font-heading fw-bold mb-4 border-bottom pb-3 pt-2">Pricing & Tax Calculation</h4>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Tax & Service Charge Rate (%) *</label>
+                  <input type="number" step="0.1" class="form-control" name="taxRate" value="5" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Currency Code *</label>
+                  <input type="text" class="form-control" name="currency" value="PKR" required>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-sage px-4 py-2">
+                  <i class="bi bi-floppy me-1"></i> Save Guest House Settings
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

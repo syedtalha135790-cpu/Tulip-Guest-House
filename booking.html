@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Reservation - Tulip Guest House</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-murree sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand brand-logo-container" href="index.html">
+        <div class="brand-logo-box">
+          <i class="bi bi-flower1"></i>
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title-main">Tulip Guest House</span>
+          <span class="brand-tagline-sub">Murree, Pakistan</span>
+        </div>
+      </a>
+      <div class="d-flex align-items-center ms-auto" id="navbarAuthButtons"></div>
+    </div>
+  </nav>
+
+  <!-- Checkout Container -->
+  <section class="py-5">
+    <div class="container">
+      <div class="mb-4">
+        <h2 class="display-6 font-heading fw-bold">Complete Your Reservation</h2>
+        <p class="text-muted">Please verify your guest details and confirm your stay dates in Murree.</p>
+      </div>
+
+      <form id="checkoutForm">
+        <div class="row g-5">
+          <!-- Left: Guest Details Form -->
+          <div class="col-lg-7">
+            <div class="card card-murree p-4 mb-4">
+              <h4 class="fw-bold font-heading mb-4 border-bottom pb-3">
+                <i class="bi bi-person-lines-fill text-success me-2"></i>Guest Information
+              </h4>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold text-dark">Full Name *</label>
+                  <input type="text" class="form-control form-control-lg" id="guestFullName" required placeholder="e.g. Hamza Malik">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold text-dark">Email Address *</label>
+                  <input type="email" class="form-control form-control-lg" id="guestEmail" required placeholder="name@example.com">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold text-dark">Phone / WhatsApp *</label>
+                  <input type="tel" class="form-control form-control-lg" id="guestPhone" required placeholder="+92 300 1234567">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold text-dark">CNIC / ID Number (Optional)</label>
+                  <input type="text" class="form-control form-control-lg" id="guestCNIC" placeholder="35202-XXXXXXX-X">
+                </div>
+                <div class="col-12">
+                  <label class="form-label fw-semibold text-dark">Special Requests / Arrival Time</label>
+                  <textarea class="form-control" id="guestRequests" rows="3" placeholder="e.g. Late check-in around 8 PM, high floor request, extra blanket..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Method UI -->
+            <div class="card card-murree p-4">
+              <h4 class="fw-bold font-heading mb-4 border-bottom pb-3">
+                <i class="bi bi-credit-card-2-front text-success me-2"></i>Select Payment Method
+              </h4>
+
+              <div class="form-check p-3 border rounded-3 mb-3 bg-light">
+                <input class="form-check-input ms-1 me-3" type="radio" name="paymentMethod" id="payAtHotel" value="hotel" checked>
+                <label class="form-check-label w-100" for="payAtHotel">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong class="d-block text-dark">Pay Cash / Card at Guest House Check-in</strong>
+                      <small class="text-muted">No advance payment required today. Pay upon arrival in Murree.</small>
+                    </div>
+                    <i class="bi bi-cash-stack fs-3 text-success me-2"></i>
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-check p-3 border rounded-3 opacity-75">
+                <input class="form-check-input ms-1 me-3" type="radio" name="paymentMethod" id="payOnline" value="online" disabled>
+                <label class="form-check-label w-100" for="payOnline">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong class="d-block text-dark">Online Bank Transfer / Credit Card</strong>
+                      <small class="text-muted">Direct online payment system</small>
+                    </div>
+                    <span class="badge bg-secondary">Coming Soon</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Order Summary Sidebar -->
+          <div class="col-lg-5">
+            <div class="card card-murree p-4 sticky-top" style="top: 100px;">
+              <h4 class="fw-bold font-heading mb-3">Booking Summary</h4>
+
+              <div class="d-flex gap-3 mb-3 border-bottom pb-3">
+                <img id="summaryRoomImg" src="assets/images/hotel-2.jpg" class="rounded-3" style="width: 100px; height: 80px; object-fit: cover;" alt="Room">
+                <div>
+                  <h5 class="fw-bold mb-1 font-heading" id="summaryRoomName">Deluxe Mountain Room</h5>
+                  <span class="badge bg-light text-dark border" id="summaryRoomType">Deluxe</span>
+                </div>
+              </div>
+
+              <div class="row g-2 mb-3 small">
+                <div class="col-6">
+                  <span class="text-muted d-block">Check-in Date</span>
+                  <strong class="text-dark fs-6" id="summaryCheckIn">10 Sep 2026</strong>
+                </div>
+                <div class="col-6">
+                  <span class="text-muted d-block">Check-out Date</span>
+                  <strong class="text-dark fs-6" id="summaryCheckOut">14 Sep 2026</strong>
+                </div>
+                <div class="col-6 mt-2">
+                  <span class="text-muted d-block">Duration</span>
+                  <strong class="text-dark" id="summaryNights">4 Nights</strong>
+                </div>
+                <div class="col-6 mt-2">
+                  <span class="text-muted d-block">Guests</span>
+                  <strong class="text-dark" id="summaryGuests">2 Guests</strong>
+                </div>
+              </div>
+
+              <div class="bg-light p-3 rounded-3 mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="text-muted">Room Rate Subtotal</span>
+                  <span class="fw-semibold" id="summarySubtotal">PKR 38,000</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="text-muted">Tax & Service (5%)</span>
+                  <span class="fw-semibold" id="summaryTax">PKR 1,900</span>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong class="fs-5">Total Payable</strong>
+                  <strong class="fs-3 text-success" id="summaryTotal">PKR 39,900</strong>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-sage btn-lg w-100 py-3 fw-bold shadow-sm" onclick="showConfirmModal()">
+                <i class="bi bi-check-circle me-1"></i> Confirm & Book Reservation
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Confirmation Modal -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 p-3">
+        <div class="modal-header border-0">
+          <h5 class="modal-title font-heading fw-bold fs-4">Confirm Reservation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>You are submitting a room reservation request for <strong>Tulip Guest House</strong>:</p>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item d-flex justify-content-between"><span>Room:</span><strong id="modalRoom">Deluxe Room</strong></li>
+            <li class="list-group-item d-flex justify-content-between"><span>Dates:</span><strong id="modalDates">10 Sep - 14 Sep</strong></li>
+            <li class="list-group-item d-flex justify-content-between"><span>Total Amount:</span><strong class="text-success" id="modalTotal">PKR 39,900</strong></li>
+          </ul>
+          <div class="alert alert-info py-2 small m-0">
+            <i class="bi bi-info-circle me-1"></i> Payment will be collected at check-in.
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Go Back</button>
+          <button type="button" class="btn btn-sage px-4" onclick="processFinalBooking()">Submit Reservation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center text-muted fs-6">
+      <p class="m-0">&copy; 2026 Tulip Guest House. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/booking.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    let bookingPayload = {};
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const roomId = parseInt(params.get('roomId')) || 2;
+      const checkIn = params.get('checkIn') || new Date().toISOString().split('T')[0];
+      const checkOut = params.get('checkOut') || new Date(Date.now() + 3 * 86400000).toISOString().split('T')[0];
+      const guests = parseInt(params.get('guests')) || 2;
+
+      const rooms = getStoredRooms();
+      const room = rooms.find(r => r.id === roomId) || rooms[0];
+
+      // Autofill customer data if logged in
+      const customer = getCurrentCustomer();
+      if (customer) {
+        document.getElementById('guestFullName').value = customer.name;
+        document.getElementById('guestEmail').value = customer.email;
+        if (customer.phone) document.getElementById('guestPhone').value = customer.phone;
+      }
+
+      const nights = calculateNights(checkIn, checkOut);
+      const subtotal = nights * room.price;
+      const tax = Math.round(subtotal * 0.05);
+      const total = subtotal + tax;
+
+      document.getElementById('summaryRoomImg').src = room.image;
+      document.getElementById('summaryRoomName').textContent = room.roomName;
+      document.getElementById('summaryRoomType').textContent = room.roomType;
+      document.getElementById('summaryCheckIn').textContent = formatDateString(checkIn);
+      document.getElementById('summaryCheckOut').textContent = formatDateString(checkOut);
+      document.getElementById('summaryNights').textContent = `${nights} ${nights === 1 ? 'Night' : 'Nights'}`;
+      document.getElementById('summaryGuests').textContent = `${guests} Guests`;
+      document.getElementById('summarySubtotal').textContent = `PKR ${subtotal.toLocaleString()}`;
+      document.getElementById('summaryTax').textContent = `PKR ${tax.toLocaleString()}`;
+      document.getElementById('summaryTotal').textContent = `PKR ${total.toLocaleString()}`;
+
+      bookingPayload = {
+        roomId: room.id,
+        roomNumber: room.roomNumber,
+        roomName: room.roomName,
+        checkIn,
+        checkOut,
+        guests,
+        nights,
+        amount: total
+      };
+    });
+
+    function showConfirmModal() {
+      const name = document.getElementById('guestFullName').value;
+      const email = document.getElementById('guestEmail').value;
+      const phone = document.getElementById('guestPhone').value;
+
+      if (!name || !email || !phone) {
+        showToast("Please fill in required guest fields.", "warning");
+        return;
+      }
+
+      document.getElementById('modalRoom').textContent = bookingPayload.roomName;
+      document.getElementById('modalDates').textContent = `${formatDateString(bookingPayload.checkIn)} to ${formatDateString(bookingPayload.checkOut)}`;
+      document.getElementById('modalTotal').textContent = `PKR ${bookingPayload.amount.toLocaleString()}`;
+
+      const modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+      modal.show();
+    }
+
+    function processFinalBooking() {
+      const name = document.getElementById('guestFullName').value;
+      const email = document.getElementById('guestEmail').value;
+      const phone = document.getElementById('guestPhone').value;
+      const cnic = document.getElementById('guestCNIC').value;
+
+      const bookings = getStoredBookings();
+      const newId = `TGH-2026-${Math.floor(100000 + Math.random() * 900000)}`;
+
+      const newBooking = {
+        id: newId,
+        customerName: name,
+        email: email,
+        phone: phone,
+        cnic: cnic,
+        roomId: bookingPayload.roomId,
+        roomNumber: bookingPayload.roomNumber,
+        roomName: bookingPayload.roomName,
+        checkIn: bookingPayload.checkIn,
+        checkOut: bookingPayload.checkOut,
+        guests: bookingPayload.guests,
+        amount: bookingPayload.amount,
+        status: "Confirmed",
+        created: new Date().toISOString().split('T')[0]
+      };
+
+      bookings.unshift(newBooking);
+      saveStoredBookings(bookings);
+
+      // Update room bookings in store
+      const rooms = getStoredRooms();
+      const targetRoom = rooms.find(r => r.id === bookingPayload.roomId);
+      if (targetRoom) {
+        targetRoom.bookings.push({
+          id: newId,
+          guestName: name,
+          checkIn: bookingPayload.checkIn,
+          checkOut: bookingPayload.checkOut,
+          status: "Confirmed"
+        });
+        saveStoredRooms(rooms);
+      }
+
+      window.location.href = `booking-confirmation.html?id=${newId}`;
+    }
+  </script>
+</body>
+</html>

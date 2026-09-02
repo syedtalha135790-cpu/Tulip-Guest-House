@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tulip Guest House - Peaceful Mountain Retreat in Murree</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-murree sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand brand-logo-container" href="index.html">
+        <div class="brand-logo-box">
+          <i class="bi bi-flower1"></i>
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title-main">Tulip Guest House</span>
+          <span class="brand-tagline-sub">Murree, Pakistan</span>
+        </div>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="rooms.html">Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex align-items-center" id="navbarAuthButtons">
+          <!-- Populated dynamically via auth.js -->
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <span class="badge bg-white text-dark px-3 py-2 rounded-pill fw-semibold mb-3 shadow-sm">
+            <i class="bi bi-geo-alt-fill text-danger me-1"></i> Murree, Punjab, Pakistan
+          </span>
+          <h1 class="hero-title mb-4">Stay Close to the Mountains</h1>
+          <p class="hero-subtitle mb-4 fs-5">
+            Experience peaceful stays, breathtaking pine mountain views, and authentic warm hospitality at Tulip Guest House in the heart of Murree.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="rooms.html" class="btn btn-sage btn-lg shadow">
+              <i class="bi bi-door-open me-1"></i> Explore Rooms
+            </a>
+            <a href="#searchWidget" class="btn btn-wood btn-lg shadow">
+              <i class="bi bi-calendar-check me-1"></i> Book Your Stay
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Availability Search Widget -->
+  <div class="container" id="searchWidget">
+    <div class="booking-search-card">
+      <form id="heroSearchForm" action="rooms.html" method="GET" class="row g-3 align-items-end">
+        <div class="col-lg-3 col-md-6">
+          <label class="form-label fw-semibold text-dark"><i class="bi bi-calendar-event text-success me-1"></i> Check-in Date</label>
+          <input type="date" class="form-control form-control-lg border-2" name="checkIn" id="heroCheckIn" required>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <label class="form-label fw-semibold text-dark"><i class="bi bi-calendar-event-fill text-success me-1"></i> Check-out Date</label>
+          <input type="date" class="form-control form-control-lg border-2" name="checkOut" id="heroCheckOut" required>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <label class="form-label fw-semibold text-dark"><i class="bi bi-people-fill text-success me-1"></i> Guests</label>
+          <select class="form-select form-select-lg border-2" name="guests">
+            <option value="1">1 Guest</option>
+            <option value="2" selected>2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5">5+ Guests</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <label class="form-label fw-semibold text-dark"><i class="bi bi-houses-fill text-success me-1"></i> Room Type</label>
+          <select class="form-select form-select-lg border-2" name="roomType">
+            <option value="all" selected>All Types</option>
+            <option value="Standard">Standard</option>
+            <option value="Deluxe">Deluxe</option>
+            <option value="Family">Family Suite</option>
+            <option value="Executive">Executive Lodge</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-12">
+          <button type="submit" class="btn btn-sage btn-lg w-100 py-3 shadow-sm fw-bold">
+            <i class="bi bi-search me-1"></i> Check Availability
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Featured Rooms Section -->
+  <section class="py-5 my-4">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <span class="text-uppercase text-success fw-bold tracking-wider fs-6">Mountain Comfort</span>
+          <h2 class="display-6 fw-bold">Our Featured Rooms</h2>
+        </div>
+        <a href="rooms.html" class="btn btn-outline-sage">View All Rooms <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+
+      <div class="row g-4" id="homeRoomsContainer">
+        <!-- Dynamic room cards rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-5" style="background-color: #EFECE6;">
+    <div class="container">
+      <div class="text-center max-w-2xl mx-auto mb-5">
+        <span class="text-uppercase text-success fw-bold fs-6">Pure Relaxation</span>
+        <h2 class="display-6 fw-bold">Why Choose Tulip Guest House</h2>
+        <p class="text-muted">Designed for cozy comfort, misty pine views, and memorable family trips.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-murree h-100 p-4 border-0">
+            <div class="feature-icon-box">
+              <i class="bi bi-mountain"></i>
+            </div>
+            <h4 class="fw-bold mb-2">Breathtaking Mountain Views</h4>
+            <p class="text-muted mb-0">Wake up to majestic green Murree pine forest hills and foggy valley views right from your bedroom window.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-murree h-100 p-4 border-0">
+            <div class="feature-icon-box">
+              <i class="bi bi-house-heart"></i>
+            </div>
+            <h4 class="fw-bold mb-2">Comfortable Heated Rooms</h4>
+            <p class="text-muted mb-0">Equipped with reliable room heating, hot water, plush bedding, and traditional wooden interior warmth.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-murree h-100 p-4 border-0">
+            <div class="feature-icon-box">
+              <i class="bi bi-people"></i>
+            </div>
+            <h4 class="fw-bold mb-2">Family Friendly Atmosphere</h4>
+            <p class="text-muted mb-0">Safe, tranquil, and peaceful environment suited for families, couples, and mountain nature lovers.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-murree h-100 p-4 border-0">
+            <div class="feature-icon-box">
+              <i class="bi bi-wifi"></i>
+            </div>
+            <h4 class="fw-bold mb-2">High-Speed Free WiFi</h4>
+            <p class="text-muted mb-0">Stay connected with complimentary high-speed internet across all rooms and common dining areas.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-murree h-100 p-4 border-0">
+            <div class="feature-icon-box">
+              <i class="bi bi-droplet-hot"></i>
+            </div>
+            <h4 class="fw-bold mb-2">24/7 Hot Water</h4>
+            <p class="text-muted mb-0">Continuous hot water supply for refreshing showers after a cold day exploring Murree hills.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card card-murree h-100 p-4 border-0">
+            <div class="feature-icon-box">
+              <i class="bi bi-pin-map"></i>
+            </div>
+            <h4 class="fw-bold mb-2">Peaceful Accessible Location</h4>
+            <p class="text-muted mb-0">Situated away from heavy traffic noise yet conveniently connected to Murree Mall Road and scenic spots.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Preview (6 Slots) -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="text-uppercase text-success fw-bold fs-6">Real Hotel Experience</span>
+        <h2 class="display-6 fw-bold">Explore Tulip Guest House</h2>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="gallery-img-wrapper shadow-sm">
+            <img src="assets/images/hotel-1.jpg" alt="Murree Mountain View">
+            <div class="gallery-overlay">
+              <h5 class="fw-bold m-0"><i class="bi bi-image me-2"></i>Murree Valley View</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="gallery-img-wrapper shadow-sm">
+            <img src="assets/images/hotel-2.jpg" alt="Hotel Room Window View">
+            <div class="gallery-overlay">
+              <h5 class="fw-bold m-0"><i class="bi bi-door-closed me-2"></i>Mountain Window Room</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="gallery-img-wrapper shadow-sm">
+            <img src="assets/images/hotel-3.jpg" alt="Traditional Wooden Kitchen">
+            <div class="gallery-overlay">
+              <h5 class="fw-bold m-0"><i class="bi bi-cup-hot me-2"></i>Wooden Interior & Dining</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="gallery-img-wrapper shadow-sm">
+            <img src="assets/images/hotel-4.jpg" alt="Hotel Exterior Road">
+            <div class="gallery-overlay">
+              <h5 class="fw-bold m-0"><i class="bi bi-building me-2"></i>Exterior & Forest Road</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="gallery-img-wrapper shadow-sm">
+            <img src="assets/images/hotel-5.jpg" alt="Deluxe Room Balcony">
+            <div class="gallery-overlay">
+              <h5 class="fw-bold m-0"><i class="bi bi-sun me-2"></i>Deluxe Balcony Suite</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="gallery-img-wrapper shadow-sm">
+            <img src="assets/images/hotel-6.jpg" alt="Property Surroundings">
+            <div class="gallery-overlay">
+              <h5 class="fw-bold m-0"><i class="bi bi-tree me-2"></i>Pine Forest Surroundings</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="gallery.html" class="btn btn-outline-sage">View Full Gallery <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-5" style="background-color: #EFECE6;">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="position-relative">
+            <img src="assets/images/hotel-4.jpg" class="img-fluid rounded-4 shadow-lg" alt="Tulip Guest House Building">
+            <div class="bg-white p-3 rounded-3 shadow position-absolute bottom-0 end-0 m-4 d-none d-sm-block">
+              <div class="d-flex align-items-center gap-3">
+                <i class="bi bi-award-fill text-warning fs-1"></i>
+                <div>
+                  <h6 class="fw-bold m-0">Top Rated Guest House</h6>
+                  <small class="text-muted">In Murree Hills</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <span class="text-uppercase text-success fw-bold fs-6">Welcome to Murree</span>
+          <h2 class="display-6 fw-bold mb-3">Your Peaceful Escape at Tulip Guest House</h2>
+          <p class="lead text-dark">
+            Nestled amid lush green pine hills and fresh mountain air, Tulip Guest House provides a serene haven for travelers seeking comfort and natural beauty in Murree.
+          </p>
+          <p class="text-muted">
+            Our property blends traditional wooden warm interiors with modern amenities. Whether you wish to relax on private balconies watching the morning fog roll over Murree peaks, or enjoy cozy nights with heated rooms and hot tea, Tulip Guest House is your home in the hills.
+          </p>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-4">
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-success"></i> Direct views of Murree pine mountain range</li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-success"></i> Modern sanitation & 24/7 hot water supply</li>
+            <li class="d-flex align-items-center gap-2"><i class="bi bi-check-circle-fill text-success"></i> Dedicated secure vehicle parking on premises</li>
+          </ul>
+          <a href="about.html" class="btn btn-sage">Read Our Full Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row g-4 mb-5">
+        <div class="col-lg-4">
+          <a class="brand-logo-container mb-3" href="index.html">
+            <div class="brand-logo-box">
+              <i class="bi bi-flower1"></i>
+            </div>
+            <div class="brand-text-block">
+              <span class="brand-title-main">Tulip Guest House</span>
+              <span class="brand-tagline-sub">Murree, Pakistan</span>
+            </div>
+          </a>
+          <p class="text-muted mb-4">
+            A peaceful, natural, and comfortable guest house in Murree, Pakistan. Experience pine forests, scenic peaks, and warm mountain hospitality.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+          <h5 class="footer-heading">Guest Services</h5>
+          <ul class="footer-links">
+            <li><a href="rooms.html">Book a Room</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+            <li><a href="customer-dashboard.html">Customer Dashboard</a></li>
+            <li><a href="admin-login.html">Admin Login</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-4">
+          <h5 class="footer-heading">Contact Murree</h5>
+          <p class="text-muted mb-2"><i class="bi bi-geo-alt-fill text-success me-2"></i> Murree Expressway, Murree, Punjab, Pakistan</p>
+          <p class="text-muted mb-2"><i class="bi bi-telephone-fill text-success me-2"></i> +92 300 1234567</p>
+          <p class="text-muted mb-0"><i class="bi bi-envelope-fill text-success me-2"></i> info@tulipguesthouse.com</p>
+        </div>
+      </div>
+      <div class="border-top pt-4 text-center text-muted fs-6">
+        <p class="m-0">&copy; 2026 Tulip Guest House. All Rights Reserved. Designed for Murree, Pakistan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/booking.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Render Featured Rooms on Homepage
+    document.addEventListener('DOMContentLoaded', () => {
+      const roomsContainer = document.getElementById('homeRoomsContainer');
+      if (roomsContainer) {
+        const rooms = getStoredRooms();
+        roomsContainer.innerHTML = rooms.slice(0, 3).map(r => `
+          <div class="col-lg-4 col-md-6">
+            <div class="card card-murree h-100">
+              <div class="position-relative">
+                <img src="${r.image}" class="room-card-img" alt="${r.roomName}">
+                <div class="position-absolute top-0 end-0 m-3">
+                  <span class="badge badge-status ${r.status === 'AVAILABLE' ? 'badge-available' : r.status === 'BOOKED' ? 'badge-booked' : 'badge-maintenance'}">
+                    ${r.status}
+                  </span>
+                </div>
+              </div>
+              <div class="card-body p-4 d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="text-muted fs-7"><i class="bi bi-people me-1"></i> Max ${r.capacity} Guests</span>
+                  <span class="text-muted fs-7"><i class="bi bi-binoculars me-1"></i> ${r.viewType}</span>
+                </div>
+                <h4 class="fw-bold mb-2">${r.roomName}</h4>
+                <p class="text-muted fs-6 flex-grow-1">${r.description.substring(0, 95)}...</p>
+                <div class="d-flex justify-content-between align-items-center pt-3 border-top mt-2">
+                  <div>
+                    <span class="room-price-tag">PKR ${r.price.toLocaleString()}</span>
+                    <small class="text-muted"> / night</small>
+                  </div>
+                  <a href="room-details.html?id=${r.id}" class="btn btn-outline-sage btn-sm">View Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Details - Tulip Guest House</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-murree sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand brand-logo-container" href="index.html">
+        <div class="brand-logo-box">
+          <i class="bi bi-flower1"></i>
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title-main">Tulip Guest House</span>
+          <span class="brand-tagline-sub">Murree, Pakistan</span>
+        </div>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="rooms.html">Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex align-items-center" id="navbarAuthButtons"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Room Details Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-5">
+        <!-- Left: Image Gallery & Room Description -->
+        <div class="col-lg-8">
+          <div class="mb-4 position-relative">
+            <img id="mainRoomImg" src="assets/images/hotel-2.jpg" class="img-fluid rounded-4 shadow w-100" style="max-height: 480px; object-fit: cover;" alt="Room View">
+            <span id="roomStatusBadge" class="position-absolute top-0 end-0 m-4 badge badge-status badge-available fs-6">AVAILABLE</span>
+          </div>
+
+          <!-- Thumbnail Gallery -->
+          <div class="row g-2 mb-4" id="thumbGalleryContainer">
+            <div class="col-3"><img src="assets/images/hotel-2.jpg" class="img-fluid rounded-3 border thumb-img cursor-pointer" onclick="switchMainImage(this.src)"></div>
+            <div class="col-3"><img src="assets/images/hotel-5.jpg" class="img-fluid rounded-3 border thumb-img cursor-pointer" onclick="switchMainImage(this.src)"></div>
+            <div class="col-3"><img src="assets/images/hotel-3.jpg" class="img-fluid rounded-3 border thumb-img cursor-pointer" onclick="switchMainImage(this.src)"></div>
+            <div class="col-3"><img src="assets/images/hotel-1.jpg" class="img-fluid rounded-3 border thumb-img cursor-pointer" onclick="switchMainImage(this.src)"></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-start border-bottom pb-4 mb-4">
+            <div>
+              <span class="text-uppercase text-success fw-bold fs-6" id="roomTypeLabel">DELUXE SUITE</span>
+              <h1 class="display-6 fw-bold font-heading mb-2" id="roomTitleLabel">Deluxe Mountain View Room</h1>
+              <p class="text-muted m-0"><i class="bi bi-geo-alt text-success me-1"></i> Murree Hills, Upper Deck Section</p>
+            </div>
+            <div class="text-end">
+              <span class="fs-2 fw-bold text-success" id="roomPriceLabel">PKR 9,500</span>
+              <span class="text-muted"> / night</span>
+            </div>
+          </div>
+
+          <!-- Quick Specs -->
+          <div class="row text-center g-3 mb-4">
+            <div class="col-sm-3 col-6">
+              <div class="p-3 bg-white rounded-3 border">
+                <i class="bi bi-people fs-3 text-success d-block mb-1"></i>
+                <small class="text-muted d-block">Max Guests</small>
+                <strong id="specCapacity">3 Guests</strong>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6">
+              <div class="p-3 bg-white rounded-3 border">
+                <i class="bi bi-lamp fs-3 text-success d-block mb-1"></i>
+                <small class="text-muted d-block">Bed Type</small>
+                <strong id="specBed">1 King Bed</strong>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6">
+              <div class="p-3 bg-white rounded-3 border">
+                <i class="bi bi-binoculars fs-3 text-success d-block mb-1"></i>
+                <small class="text-muted d-block">View</small>
+                <strong id="specView">Mountain View</strong>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6">
+              <div class="p-3 bg-white rounded-3 border">
+                <i class="bi bi-shield-check fs-3 text-success d-block mb-1"></i>
+                <small class="text-muted d-block">Sanitation</small>
+                <strong>100% Sanitized</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <h4 class="fw-bold font-heading mb-3">Room Overview</h4>
+          <p class="text-muted lead" id="roomDescriptionText">
+            Experience serene mountain living in Murree with our Deluxe Mountain View Room at Tulip Guest House. Equipped with ceiling-high windows overlooking pine-covered valleys, handcrafted wooden furnishings, heated room ambiance, and high-speed Wi-Fi.
+          </p>
+
+          <!-- Facilities Grid -->
+          <h4 class="fw-bold font-heading mb-3 mt-5">Room Facilities & Amenities</h4>
+          <div class="row g-3" id="facilitiesGrid">
+            <div class="col-md-4 col-6"><div class="p-3 bg-white border rounded-3 d-flex align-items-center gap-3"><i class="bi bi-wifi fs-4 text-success"></i><span>High-Speed WiFi</span></div></div>
+            <div class="col-md-4 col-6"><div class="p-3 bg-white border rounded-3 d-flex align-items-center gap-3"><i class="bi bi-tv fs-4 text-success"></i><span>Flat Screen TV</span></div></div>
+            <div class="col-md-4 col-6"><div class="p-3 bg-white border rounded-3 d-flex align-items-center gap-3"><i class="bi bi-droplet-hot fs-4 text-success"></i><span>24/7 Hot Water</span></div></div>
+            <div class="col-md-4 col-6"><div class="p-3 bg-white border rounded-3 d-flex align-items-center gap-3"><i class="bi bi-thermometer-sun fs-4 text-success"></i><span>Room Heating</span></div></div>
+            <div class="col-md-4 col-6"><div class="p-3 bg-white border rounded-3 d-flex align-items-center gap-3"><i class="bi bi-mountain fs-4 text-success"></i><span>Mountain View</span></div></div>
+            <div class="col-md-4 col-6"><div class="p-3 bg-white border rounded-3 d-flex align-items-center gap-3"><i class="bi bi-p-square fs-4 text-success"></i><span>Free Secure Parking</span></div></div>
+            <div class="col-md-4 col-6"><div class="p-3 bg-white border rounded-3 d-flex align-items-center gap-3"><i class="bi bi-headset fs-4 text-success"></i><span>24/7 Room Service</span></div></div>
+            <div class="col-md-4 col-6"><div class="p-3 bg-white border rounded-3 d-flex align-items-center gap-3"><i class="bi bi-cup-hot fs-4 text-success"></i><span>Tea / Coffee Maker</span></div></div>
+          </div>
+        </div>
+
+        <!-- Right: Sticky Booking Panel with Live Price Calculator -->
+        <div class="col-lg-4">
+          <div class="card card-murree p-4 sticky-top shadow-sm" style="top: 100px;">
+            <h4 class="fw-bold font-heading mb-4 border-bottom pb-3">Reserve Your Stay</h4>
+            
+            <form id="detailsBookingForm">
+              <div class="mb-3">
+                <label class="form-label fw-semibold text-dark"><i class="bi bi-calendar-event text-success me-1"></i> Check-in Date</label>
+                <input type="date" class="form-control form-control-lg" id="detailsCheckIn" name="checkIn" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-semibold text-dark"><i class="bi bi-calendar-event-fill text-success me-1"></i> Check-out Date</label>
+                <input type="date" class="form-control form-control-lg" id="detailsCheckOut" name="checkOut" required>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-semibold text-dark"><i class="bi bi-people text-success me-1"></i> Number of Guests</label>
+                <select class="form-select form-select-lg" id="detailsGuests" name="guests">
+                  <option value="1">1 Guest</option>
+                  <option value="2" selected>2 Guests</option>
+                  <option value="3">3 Guests</option>
+                </select>
+              </div>
+
+              <!-- Price Breakdown -->
+              <div class="bg-light p-3 rounded-3 mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="text-muted" id="calcNightsLabel">3 Nights (PKR 9,500 x 3)</span>
+                  <span class="fw-semibold" id="calcSubtotal">PKR 28,500</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="text-muted">Taxes & Service Charge (5%)</span>
+                  <span class="fw-semibold" id="calcTax">PKR 1,425</span>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong class="fs-5">Total Amount</strong>
+                  <strong class="fs-4 text-success" id="calcTotal">PKR 29,925</strong>
+                </div>
+              </div>
+
+              <div id="availabilityAlert"></div>
+
+              <button type="submit" id="reserveBtn" class="btn btn-sage btn-lg w-100 py-3 fw-bold shadow-sm">
+                <i class="bi bi-credit-card me-1"></i> Reserve This Room
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="border-top pt-4 text-center text-muted fs-6">
+        <p class="m-0">&copy; 2026 Tulip Guest House. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/booking.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    let currentRoom = null;
+
+    function switchMainImage(src) {
+      document.getElementById('mainRoomImg').src = src;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const roomId = parseInt(params.get('id')) || 2;
+      const rooms = getStoredRooms();
+      currentRoom = rooms.find(r => r.id === roomId) || rooms[0];
+
+      // Render Room Details
+      document.getElementById('mainRoomImg').src = currentRoom.image;
+      document.getElementById('roomTypeLabel').textContent = currentRoom.roomType.toUpperCase();
+      document.getElementById('roomTitleLabel').textContent = currentRoom.roomName;
+      document.getElementById('roomPriceLabel').textContent = `PKR ${currentRoom.price.toLocaleString()}`;
+      document.getElementById('specCapacity').textContent = `${currentRoom.capacity} Guests`;
+      document.getElementById('specBed').textContent = currentRoom.bedType;
+      document.getElementById('specView').textContent = currentRoom.viewType;
+      document.getElementById('roomDescriptionText').textContent = currentRoom.description;
+
+      const badge = document.getElementById('roomStatusBadge');
+      badge.textContent = currentRoom.status;
+      badge.className = `position-absolute top-0 end-0 m-4 badge badge-status ${currentRoom.status === 'AVAILABLE' ? 'badge-available' : currentRoom.status === 'BOOKED' ? 'badge-booked' : 'badge-maintenance'}`;
+
+      // Preset CheckIn / CheckOut
+      const checkInInput = document.getElementById('detailsCheckIn');
+      const checkOutInput = document.getElementById('detailsCheckOut');
+
+      const today = new Date().toISOString().split('T')[0];
+      const threeDays = new Date(Date.now() + 3 * 86400000).toISOString().split('T')[0];
+
+      checkInInput.value = params.get('checkIn') || today;
+      checkOutInput.value = params.get('checkOut') || threeDays;
+
+      updateRoomDetailsBookingPanel();
+
+      checkInInput.addEventListener('change', updateRoomDetailsBookingPanel);
+      checkOutInput.addEventListener('change', updateRoomDetailsBookingPanel);
+
+      document.getElementById('detailsBookingForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const checkIn = checkInInput.value;
+        const checkOut = checkOutInput.value;
+        const guests = document.getElementById('detailsGuests').value;
+
+        const availability = checkRoomAvailabilityForDates(currentRoom, checkIn, checkOut);
+        if (!availability.available) {
+          alert(`Selected dates are not available: ${availability.reason}`);
+          return;
+        }
+
+        window.location.href = `booking.html?roomId=${currentRoom.id}&checkIn=${checkIn}&checkOut=${checkOut}&guests=${guests}`;
+      });
+    });
+
+    function updateRoomDetailsBookingPanel() {
+      if (!currentRoom) return;
+      const checkIn = document.getElementById('detailsCheckIn').value;
+      const checkOut = document.getElementById('detailsCheckOut').value;
+      const nights = calculateNights(checkIn, checkOut);
+
+      const subtotal = nights * currentRoom.price;
+      const tax = Math.round(subtotal * 0.05);
+      const total = subtotal + tax;
+
+      document.getElementById('calcNightsLabel').textContent = `${nights} ${nights === 1 ? 'Night' : 'Nights'} (PKR ${currentRoom.price.toLocaleString()} x ${nights})`;
+      document.getElementById('calcSubtotal').textContent = `PKR ${subtotal.toLocaleString()}`;
+      document.getElementById('calcTax').textContent = `PKR ${tax.toLocaleString()}`;
+      document.getElementById('calcTotal').textContent = `PKR ${total.toLocaleString()}`;
+
+      const alertContainer = document.getElementById('availabilityAlert');
+      const reserveBtn = document.getElementById('reserveBtn');
+
+      if (checkIn && checkOut) {
+        const availability = checkRoomAvailabilityForDates(currentRoom, checkIn, checkOut);
+        if (!availability.available) {
+          alertContainer.innerHTML = `
+            <div class="alert alert-danger py-2 small mb-3">
+              <i class="bi bi-x-circle-fill me-1"></i> ${availability.reason}
+            </div>
+          `;
+          reserveBtn.disabled = true;
+          reserveBtn.className = "btn btn-secondary btn-lg w-100 py-3 fw-bold";
+          reserveBtn.innerHTML = `<i class="bi bi-lock me-1"></i> Not Available For Dates`;
+        } else {
+          alertContainer.innerHTML = `
+            <div class="alert alert-success py-2 small mb-3">
+              <i class="bi bi-check-circle-fill me-1"></i> Available for selected dates
+            </div>
+          `;
+          reserveBtn.disabled = false;
+          reserveBtn.className = "btn btn-sage btn-lg w-100 py-3 fw-bold shadow-sm";
+          reserveBtn.innerHTML = `<i class="bi bi-credit-card me-1"></i> Reserve This Room`;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
