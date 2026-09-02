@@ -1,6 +1,5 @@
 /**
- * Tulip Guest House - Mock Data & API Abstraction Layer
- * Structured for future seamless replacement with Laravel REST API calls
+ * Tulip Guest House - Mock Data & Real Property Photos
  */
 
 const INITIAL_ROOMS = [
@@ -14,7 +13,7 @@ const INITIAL_ROOMS = [
     bedType: "1 Queen Bed",
     viewType: "Mountain View",
     status: "AVAILABLE",
-    image: "assets/images/hotel-2.jpg",
+    image: "assets/images/real-photos/real-2.jpg?v=2",
     description: "Cozy and warm standard room featuring traditional wooden finishes and large windows overlooking Murree pine valleys.",
     facilities: ["WiFi", "TV", "Hot Water", "Room Heating", "Mountain View", "Private Bathroom"],
     bookings: [
@@ -31,7 +30,7 @@ const INITIAL_ROOMS = [
     bedType: "1 King Bed",
     viewType: "Panoramic Mountain View",
     status: "BOOKED",
-    image: "assets/images/hotel-5.jpg",
+    image: "assets/images/real-photos/real-5.jpg?v=2",
     description: "Spacious deluxe room with private balcony offering direct sunset mountain views over Murree hilltops.",
     facilities: ["WiFi", "TV", "Hot Water", "Room Heating", "Balcony", "Parking", "Room Service", "Private Bathroom"],
     bookings: [
@@ -48,7 +47,7 @@ const INITIAL_ROOMS = [
     bedType: "2 King Beds",
     viewType: "Valley View",
     status: "AVAILABLE",
-    image: "assets/images/hotel-3.jpg",
+    image: "assets/images/real-photos/real-3.jpg?v=2",
     description: "Ideal for families visiting Murree. Features wooden kitchen accents, comfortable seating lounge, and heated rooms.",
     facilities: ["WiFi", "TV", "Hot Water", "Room Heating", "Kitchenette", "Parking", "Room Service", "Private Bathroom"],
     bookings: []
@@ -63,7 +62,7 @@ const INITIAL_ROOMS = [
     bedType: "1 King + 1 Sofa Bed",
     viewType: "Pine Forest View",
     status: "AVAILABLE",
-    image: "assets/images/hotel-4.jpg",
+    image: "assets/images/real-photos/real-4.jpg?v=2",
     description: "Premium wooden lodge room surrounded by pine trees, high ceilings, warm fireplace hearth visual, and ultra-quiet surroundings.",
     facilities: ["WiFi", "TV", "Hot Water", "Room Heating", "Fireplace", "Mountain View", "Parking", "Room Service"],
     bookings: [
@@ -80,24 +79,9 @@ const INITIAL_ROOMS = [
     bedType: "1 Super King Bed",
     viewType: "360 Mountain View",
     status: "AVAILABLE",
-    image: "assets/images/hotel-5.jpg",
+    image: "assets/images/real-photos/real-1.jpg?v=2",
     description: "Top-floor luxury suite with ceiling-high windows, private timber balcony, and complimentary breakfast service.",
     facilities: ["WiFi", "TV", "Hot Water", "Room Heating", "Balcony", "Free Breakfast", "Parking", "Room Service"],
-    bookings: []
-  },
-  {
-    id: 6,
-    roomNumber: "106",
-    roomName: "Penthouse Mountain Haven",
-    roomType: "Penthouse",
-    price: 22000,
-    capacity: 6,
-    bedType: "3 King Beds",
-    viewType: "Full Murree Crest View",
-    status: "MAINTENANCE",
-    image: "assets/images/hotel-1.jpg",
-    description: "Exclusive penthouse property with expansive space, panoramic deck, and dedicated room service staff.",
-    facilities: ["WiFi", "TV", "Hot Water", "Room Heating", "Deck", "Free Breakfast", "Butler Service", "Parking"],
     bookings: []
   }
 ];
@@ -118,38 +102,6 @@ const INITIAL_BOOKINGS = [
     amount: 38000,
     status: "Confirmed",
     created: "2026-09-01"
-  },
-  {
-    id: "TGH-2026-000122",
-    customerName: "Ayesha Tariq",
-    email: "ayesha@example.com",
-    phone: "+92 321 9876543",
-    cnic: "35202-7654321-9",
-    roomId: 1,
-    roomNumber: "101",
-    roomName: "Standard Mountain Room",
-    checkIn: "2026-09-05",
-    checkOut: "2026-09-08",
-    guests: 2,
-    amount: 22500,
-    status: "Completed",
-    created: "2026-08-25"
-  },
-  {
-    id: "TGH-2026-000124",
-    customerName: "Bilal Sheikh",
-    email: "bilal@example.com",
-    phone: "+92 333 5554433",
-    cnic: "35202-5554433-2",
-    roomId: 4,
-    roomNumber: "104",
-    roomName: "Executive Pine Lodge Suite",
-    checkIn: "2026-09-15",
-    checkOut: "2026-09-18",
-    guests: 3,
-    amount: 45000,
-    status: "Pending",
-    created: "2026-09-02"
   }
 ];
 
@@ -162,10 +114,12 @@ const DEFAULT_SETTINGS = {
   currency: "PKR"
 };
 
-// Initialize Storage
+// Force update storage with real property photos
 function initStorage() {
   localStorage.setItem('mm_rooms', JSON.stringify(INITIAL_ROOMS));
-  localStorage.setItem('mm_bookings', JSON.stringify(INITIAL_BOOKINGS));
+  if (!localStorage.getItem('mm_bookings')) {
+    localStorage.setItem('mm_bookings', JSON.stringify(INITIAL_BOOKINGS));
+  }
   localStorage.setItem('mm_settings', JSON.stringify(DEFAULT_SETTINGS));
 }
 
